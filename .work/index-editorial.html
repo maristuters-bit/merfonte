@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merfonte — Science-led skincare for skin over forty</title>
+<meta name="description" content="Merfonte is a curated online store for skincare after forty. Face, eye and body care for women and men, selected from European laboratories. Launching 2026.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Inter:wght@400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Merfonte — editorial variant
+   Nordic magazine spread. Achromatic, zero radius, zero shadow,
+   ghost links instead of buttons, photography carries the warmth.
+   ============================================================ */
+
+:root {
+  --white:      #ffffff;
+  --mist:       #f2f5f8;
+  --soft-mist:  #e6ebee;
+  --pale-slate: #cfdce7;
+  --steel:      #58737e;
+  --slate:      #3b505a;
+  --ink:        #202f3b;
+
+  --display: "Bodoni Moda", "Playfair Display", Georgia, serif;
+  --sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --page: 1400px;
+  --pad:  clamp(1.25rem, 4vw, 3rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--slate);
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ---------- nav ---------- */
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem var(--pad);
+  border-bottom: 1px solid var(--slate);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.nav a { color: var(--slate); text-decoration: none; }
+.nav-left  { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+.nav-right { display: flex; gap: 1.1rem; justify-content: flex-end; flex-wrap: wrap; }
+.nav-mark  {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@media (max-width: 46rem) {
+  .nav { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 0.7rem; }
+  .nav-right { justify-content: center; }
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: clamp(30rem, 82vh, 48rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 7vh, 5rem) var(--pad) clamp(2rem, 5vh, 3.5rem);
+  overflow: hidden;
+  color: var(--white);
+  isolation: isolate;
+}
+
+/* IMAGE SLOT — replace with a close-cropped portrait, high-key, natural light.
+   <img class="hero-photo" src="assets/img/portrait.jpg" alt="">  */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -2;
+  background:
+    radial-gradient(70% 60% at 68% 30%, #7d8f99 0%, transparent 62%),
+    linear-gradient(160deg, #9aa8b0 0%, #61757f 55%, #3b505a 100%);
+}
+.hero::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(32,47,59,.28) 0%, rgba(32,47,59,.52) 100%);
+}
+.hero-photo {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.masthead {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(3rem, 13vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.hero-foot { max-width: 34rem; }
+.hero-foot .kicker { margin: 0 0 0.9rem; }
+.hero-foot p.lede {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3.4vw, 2.15rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.1rem;
+}
+.hero-foot .sub { margin: 0 0 1.4rem; opacity: 0.85; }
+
+/* ---------- shared type ---------- */
+
+.kicker {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 0 0 1rem;
+}
+
+.section-head {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.link {
+  display: inline-block;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+/* ---------- bands ---------- */
+
+.band { padding: clamp(3.5rem, 8vw, 5rem) var(--pad); }
+.band.mist { background: var(--mist); }
+
+.band-inner {
+  max-width: var(--page);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem) {
+  .band-inner.split { grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: start; }
+}
+
+.copy p { max-width: 38rem; margin: 0 0 1rem; }
+.copy p:last-child { margin-bottom: 0; }
+.copy .section-head + p { margin-top: 1.4rem; }
+
+/* editorial image tile */
+.tile {
+  background: var(--soft-mist);
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  color: var(--steel);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+  padding: 1rem;
+}
+.tile.wide { aspect-ratio: 3 / 2; }
+
+/* ---------- signup ---------- */
+
+.signup .band-inner { max-width: 46rem; }
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  max-width: 30rem;
+}
+.form input {
+  flex: 1 1 14rem;
+  min-width: 0;
+  padding: 0.75rem 0.85rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--pale-slate);
+  border-radius: 0;
+}
+.form input:focus { outline: none; border-color: var(--slate); }
+.form button {
+  flex: 0 0 auto;
+  padding: 0.75rem 0;
+  font: inherit;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--slate);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--slate);
+  border-radius: 0;
+  cursor: pointer;
+}
+.form button:hover { color: var(--ink); }
+
+/* ---------- footer ---------- */
+
+.foot {
+  background: var(--slate);
+  color: var(--white);
+  padding: clamp(2.5rem, 6vw, 3.5rem) var(--pad);
+}
+.foot-inner {
+  max-width: var(--page);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.8125rem;
+}
+.foot a { color: var(--white); }
+.foot .kicker { color: var(--pale-slate); margin: 0; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-left">
+    <a href="#store">Store</a>
+    <a href="#name">The name</a>
+    <a href="#position">Position</a>
+  </div>
+  <div class="nav-mark">Merfonte</div>
+  <div class="nav-right">
+    <span>Ship to: Europe / EUR</span>
+    <a href="#waitlist">Waitlist</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <!-- <img class="hero-photo" src="assets/img/portrait.jpg" alt=""> -->
+  <h1 class="masthead">Merfonte</h1>
+
+  <div class="hero-foot">
+    <p class="kicker">Launching 2026</p>
+    <p class="lede">A curated store of European formulations.</p>
+    <p class="sub">Face, eye and body — for women and men over forty.</p>
+    <a class="link" href="#waitlist">Join the waitlist</a>
+  </div>
+</header>
+
+<section class="band" id="name">
+  <div class="band-inner split">
+    <div class="copy">
+      <p class="kicker">The name</p>
+      <h2 class="section-head">A spring<br>in the sea.</h2>
+    </div>
+    <div class="copy">
+      <p>Off certain coastlines, fresh water rises through the sea floor — cold, clear,
+      under pressure, surfacing in the middle of salt. Sailors once filled their barrels
+      above them. In Italian, such a place is a <em>fonte</em>: a source.</p>
+      <p>We took the name because it describes a mechanism, not a mood.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band mist" id="store">
+  <div class="band-inner split">
+    <div class="tile wide">Image — laboratory glass, or a coastline</div>
+    <div class="copy">
+      <p class="kicker">What we are building</p>
+      <h2 class="section-head">An online store,<br>opening 2026.</h2>
+      <p>Face, eye and body care for women and men over forty — selected from European
+      laboratories, and in time formulated in our own.</p>
+      <p>A small, curated range. Not a catalogue. Every product on the shelf has to earn
+      its place, and we will tell you why it is there.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="position">
+  <div class="band-inner split">
+    <div class="copy">
+      <p class="kicker">The position</p>
+      <h2 class="section-head">Not<br>anti-aging.</h2>
+    </div>
+    <div class="copy">
+      <p>Skin after forty is not a fault to be corrected. Barrier function changes, lipid
+      production falls, renewal slows. These are measurable, and they respond to supply —
+      not to persuasion.</p>
+      <p>We select against published evidence, say what is in the bottle and at what
+      concentration, and make no claim we cannot cite.</p>
+      <p>For women and men. The biology is not that different.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band mist signup" id="waitlist">
+  <div class="band-inner">
+    <div class="copy">
+      <h2 class="section-head">We will write once.</h2>
+      <p>When there is something real to show. No weekly newsletter, no countdown.</p>
+
+      <!-- ⚠ SETUP: replace YOUR_FORM_ID with a free formspree.io endpoint. -->
+      <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" required autocomplete="email" placeholder="your@email.com" aria-label="Email address">
+        <button type="submit">Keep me posted</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p class="kicker">Merfonte · Skincare after forty</p>
+    <p><a href="mailto:hello@merfonte.com">hello@merfonte.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

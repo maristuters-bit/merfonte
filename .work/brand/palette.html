@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merfonte — paletes salīdzinājums</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200;300;400&family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:"Inter",system-ui,sans-serif;background:#e8e6e1;color:#1b1b1a;line-height:1.6}
+  .page{max-width:78rem;margin:0 auto;padding:clamp(1.5rem,4vw,3.5rem)}
+  h1{font-family:"Spectral",serif;font-weight:300;font-size:clamp(1.6rem,4vw,2.4rem);margin:0 0 .3rem}
+  .sub{color:#5d5c58;margin:0 0 2.5rem;max-width:52ch}
+
+  .opt{margin:0 0 3.5rem;border-radius:4px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.10)}
+
+  /* stage = the brand surface being tested */
+  .stage{padding:clamp(2.5rem,7vw,5rem) clamp(1.5rem,5vw,4rem)}
+  .mark{
+    font-family:"Spectral",serif;font-weight:200;
+    font-size:clamp(1.9rem,6.5vw,4rem);
+    letter-spacing:.22em;text-transform:uppercase;
+    margin:0 0 1.1rem;line-height:1.1;
+  }
+  .tag{font-family:"Spectral",serif;font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);margin:0 0 2.2rem;opacity:.85}
+  .btn{display:inline-block;padding:.7rem 1.4rem;border-radius:2px;font-size:.85rem;font-weight:500;letter-spacing:.04em}
+  .swatches{display:flex;flex-wrap:wrap;gap:0;margin-top:2.5rem}
+  .sw{flex:1 1 8rem;padding:.9rem 1rem;font-size:.7rem;letter-spacing:.08em;font-family:ui-monospace,monospace}
+
+  /* meta strip below each option */
+  .meta{background:#fff;padding:1.25rem clamp(1.5rem,5vw,4rem);display:grid;gap:.4rem;grid-template-columns:1fr}
+  @media(min-width:44rem){.meta{grid-template-columns:auto 1fr;gap:.4rem 2rem}}
+  .meta dt{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#8a8985;padding-top:.15rem}
+  .meta dd{margin:0;font-size:.9rem}
+  .verdict{font-weight:500}
+  .good{color:#1d6b4f}.warn{color:#9a5b1e}.bad{color:#a03434}
+
+  /* ---- A. deep marine (recommended) ---- */
+  .a .stage{background:#12292E;color:#F6F4F0}
+  .a .btn{background:#9A7F5F;color:#12292E}
+  /* ---- B. deep forest ---- */
+  .b .stage{background:#1C2E22;color:#F2EFE7}
+  .b .btn{background:#B69A6B;color:#1C2E22}
+  /* ---- C. warm stone ---- */
+  .c .stage{background:#E7E0D4;color:#33302A}
+  .c .btn{background:#33302A;color:#E7E0D4}
+  /* ---- D. clinical white ---- */
+  .d .stage{background:#FFFFFF;color:#12243F}
+  .d .btn{background:#12243F;color:#fff}
+  .d{border:1px solid #d5d3ce}
+
+  .label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin:0 0 1.6rem}
+
+  .foot{margin:3rem 0 1rem;padding-top:1.5rem;border-top:1px solid #cfcdc7;color:#5d5c58;font-size:.9rem;max-width:60ch}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Merfonte — četras paletes</h1>
+  <p class="sub">Viena un tā pati vārdmarka katrā. Skaties uz ekrāna, ne uz heksiem. Jautājums nav "kura ir skaistāka", bet <em>"kuru es gribu redzēt vannasistabas plauktā pēc septiņiem gadiem"</em>.</p>
+
+  <!-- A -->
+  <section class="opt a">
+    <div class="stage">
+      <p class="label">A · Dziļa jūras tinte — ieteikums</p>
+      <p class="mark">Merfonte</p>
+      <p class="tag">Science-led skincare for skin over forty.</p>
+      <span class="btn">Keep me posted</span>
+      <div class="swatches">
+        <div class="sw" style="background:#12292E;color:#F6F4F0">#12292E</div>
+        <div class="sw" style="background:#F6F4F0;color:#12292E">#F6F4F0</div>
+        <div class="sw" style="background:#9A7F5F;color:#12292E">#9A7F5F</div>
+      </div>
+    </div>
+    <dl class="meta">
+      <dt>Saka</dt><dd>Dziļums, ūdens, nopietnība. Kodē vārdu bez paskaidrojuma.</dd>
+      <dt>Trends</dt><dd>Sakrīt ar 2026 <code>darker cinematic</code> un <code>inter forest</code>, bet nav atkarīgs no tā.</dd>
+      <dt>Risks</dt><dd>Tumšs fons prasa disciplīnu foto — slikts produkta attēls uz tā izskatās sliktāk nekā uz balta.</dd>
+      <dt>Vērtējums</dt><dd class="verdict good">Iztur 10 gadus. Atšķiras kategorijā.</dd>
+    </dl>
+  </section>
+
+  <!-- B -->
+  <section class="opt b">
+    <div class="stage">
+      <p class="label">B · Dziļš mežs</p>
+      <p class="mark">Merfonte</p>
+      <p class="tag">Science-led skincare for skin over forty.</p>
+      <span class="btn">Keep me posted</span>
+      <div class="swatches">
+        <div class="sw" style="background:#1C2E22;color:#F2EFE7">#1C2E22</div>
+        <div class="sw" style="background:#F2EFE7;color:#1C2E22">#F2EFE7</div>
+        <div class="sw" style="background:#B69A6B;color:#1C2E22">#B69A6B</div>
+      </div>
+    </div>
+    <dl class="meta">
+      <dt>Saka</dt><dd>Augi, botānika, dabiskums.</dd>
+      <dt>Trends</dt><dd>Tieši 2026 <code>inter forest</code>. Vismodernākais no četriem.</dd>
+      <dt>Risks</dt><dd>Zaļš kosmētikā = botānisks. Tu esi <em>zinātnisks</em>. Krāsa strīdas ar pozīciju, un Caudalie to lauku jau tur.</dd>
+      <dt>Vērtējums</dt><dd class="verdict warn">Skaisti, bet sūta nepareizu ziņu.</dd>
+    </dl>
+  </section>
+
+  <!-- C -->
+  <section class="opt c">
+    <div class="stage">
+      <p class="label">C · Silts akmens</p>
+      <p class="mark">Merfonte</p>
+      <p class="tag">Science-led skincare for skin over forty.</p>
+      <span class="btn">Keep me posted</span>
+      <div class="swatches">
+        <div class="sw" style="background:#E7E0D4;color:#33302A">#E7E0D4</div>
+        <div class="sw" style="background:#33302A;color:#E7E0D4">#33302A</div>
+        <div class="sw" style="background:#8C7B63;color:#fff">#8C7B63</div>
+      </div>
+    </div>
+    <dl class="meta">
+      <dt>Saka</dt><dd>Aptieka, amatniecība, mierīgs luksuss.</dd>
+      <dt>Trends</dt><dd><code>Soft neutrals</code> — droši un pastāvīgi.</dd>
+      <dt>Risks</dt><dd>Aesop teritorija. Tuvu tam, ka izskaties pēc atdarinājuma, un nekodē jūru nekādā veidā.</dd>
+      <dt>Vērtējums</dt><dd class="verdict warn">Iztur, bet neko nepasaka par tevi.</dd>
+    </dl>
+  </section>
+
+  <!-- D -->
+  <section class="opt d">
+    <div class="stage">
+      <p class="label">D · Klīniski balts — kategorijas noklusējums</p>
+      <p class="mark">Merfonte</p>
+      <p class="tag">Science-led skincare for skin over forty.</p>
+      <span class="btn">Keep me posted</span>
+      <div class="swatches">
+        <div class="sw" style="background:#FFFFFF;color:#12243F;box-shadow:inset 0 0 0 1px #dcdad5">#FFFFFF</div>
+        <div class="sw" style="background:#12243F;color:#fff">#12243F</div>
+        <div class="sw" style="background:#5B7FA6;color:#fff">#5B7FA6</div>
+      </div>
+    </div>
+    <dl class="meta">
+      <dt>Saka</dt><dd>Aptieka, dermatoloģija, uzticamība.</dd>
+      <dt>Trends</dt><dd>Ārpus laika, jo to lieto pilnīgi visi.</dd>
+      <dt>Risks</dt><dd>La Roche-Posay, Avène, Vichy, CeraVe, The Ordinary. Instagramā tu pazūdi starp piecpadsmit baltām kastītēm.</dd>
+      <dt>Vērtējums</dt><dd class="verdict bad">Drošs un neredzams. Lielam budžetam, ne tev.</dd>
+    </dl>
+  </section>
+
+  <p class="foot">
+    Vārdmarka visur ir <strong>Spectral Light, versāli, atstatums .22em</strong> — vietturis.
+    Pirms iepakojuma jāizlemj par licencētu šriftu. Bezmaksas alternatīvas, kas neizskatās lēti:
+    EB&nbsp;Garamond, Spectral, Cormorant. Maksas, kas nolasās dārgi: Canela, Ogg, Publico, Larish&nbsp;Neue.
+  </p>
+
+</div>
+</body>
+</html>

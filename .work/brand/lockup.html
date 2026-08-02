@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merfonte — zelts pret bronzu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200;300;400&family=Playfair+Display:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:"Inter",system-ui,sans-serif;background:#dedbd5;color:#1b1b1a;line-height:1.6}
+  .wrap{max-width:82rem;margin:0 auto;padding:clamp(1.25rem,3vw,2.5rem)}
+  h1{font-family:"Spectral",serif;font-weight:300;font-size:clamp(1.5rem,3.5vw,2.1rem);margin:0 0 .3rem}
+  .intro{color:#575652;max-width:56ch;margin:0 0 2rem}
+
+  .pair{display:grid;gap:1.25rem;grid-template-columns:1fr}
+  @media(min-width:60rem){.pair{grid-template-columns:1fr 1fr}}
+
+  .panel{border-radius:4px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+  .stage{padding:clamp(2.5rem,6vw,4rem) clamp(1.25rem,4vw,2.5rem);text-align:center}
+
+  /* --- monogram (rough stand-in for the drawn mark) --- */
+  .mono{position:relative;display:inline-block;height:clamp(84px,14vw,120px);margin-bottom:1.6rem}
+  .mono svg{height:100%;width:auto;display:block}
+
+  .word{
+    font-weight:400;text-transform:uppercase;
+    font-size:clamp(1.5rem,4.6vw,2.6rem);
+    letter-spacing:.2em;margin:0 0 .9rem;line-height:1;
+    padding-left:.2em; /* optical: compensate tracking on last letter */
+  }
+  .tagrow{display:flex;align-items:center;justify-content:center;gap:.9rem}
+  .tagrow::before,.tagrow::after{content:"";height:1px;width:clamp(1.5rem,6vw,3.5rem);background:currentColor;opacity:.5}
+  .tag{font-size:clamp(.6rem,1.5vw,.72rem);letter-spacing:.28em;text-transform:uppercase;margin:0;white-space:nowrap}
+
+  /* small-size test */
+  .small{padding:1.1rem;text-align:center;border-top:1px solid rgba(128,128,128,.25)}
+  .small svg{height:34px;width:auto}
+  .small p{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;margin:.45rem 0 0}
+
+  .meta{background:#fff;padding:1.1rem 1.35rem}
+  .meta p{margin:0 0 .5rem;font-size:.88rem}
+  .meta p:last-child{margin:0}
+  .verdict{font-weight:500}
+  .good{color:#1d6b4f}.bad{color:#a03434}
+
+  /* ===== A · reference: gold on cream ===== */
+  .ref .stage{background:#F5F0E8}
+  .ref .word{font-family:"Playfair Display",serif;color:#141414}
+  .ref .tagrow{color:#B8975C}
+  .ref .small{background:#F5F0E8;color:#B8975C}
+
+  /* ===== B · brand palette: bronze on marine ===== */
+  .brand .stage{background:#12292E}
+  .brand .word{font-family:"Spectral",serif;font-weight:300;color:#F6F4F0}
+  .brand .tagrow{color:#9A7F5F}
+  .brand .small{background:#12292E;color:#9A7F5F;border-top-color:rgba(246,244,240,.14)}
+
+  .note{margin:2.25rem 0 1rem;padding-top:1.4rem;border-top:1px solid #c6c3bd;color:#575652;font-size:.9rem;max-width:62ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Tā pati doma, divās valodās</h1>
+  <p class="intro">Vienāds izkārtojums, vienāda monogramma. Atšķiras tikai krāsa, šrifta kontrasts un apakšraksts. Skaties, kurš no diviem izskatās pēc zīmola, kas saka <em>“science-led, not anti-aging”</em>.</p>
+
+  <div class="pair">
+
+    <!-- A -->
+    <section class="panel ref">
+      <div class="stage">
+        <div class="mono">
+          <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="MF monogramma">
+            <!-- M -->
+            <path d="M20 128 V26 h13 L67 96 L101 26 h13 v102 h-12 V49 L72 122 h-9 L32 49 v79 Z" fill="#B8975C"/>
+            <!-- F, overlapping right -->
+            <path d="M112 128 V26 h62 v11 h-49 v34 h44 v11 h-44 v46 Z" fill="#B8975C"/>
+            <!-- droplet sitting in the M's valley -->
+            <path d="M67 62 c0 0 17 20 17 30 a17 17 0 1 1 -34 0 c0 -10 17 -30 17 -30 Z" fill="#F5F0E8" stroke="#B8975C" stroke-width="3"/>
+          </svg>
+        </div>
+        <p class="word">Merfonte</p>
+        <div class="tagrow"><p class="tag">Sea · Source · Beauty</p></div>
+      </div>
+      <div class="small">
+        <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 128 V26 h13 L67 96 L101 26 h13 v102 h-12 V49 L72 122 h-9 L32 49 v79 Z" fill="currentColor"/>
+          <path d="M112 128 V26 h62 v11 h-49 v34 h44 v11 h-44 v46 Z" fill="currentColor"/>
+          <path d="M67 62 c0 0 17 20 17 30 a17 17 0 1 1 -34 0 c0 -10 17 -30 17 -30 Z" fill="#F5F0E8" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <p>uz burciņas vāka</p>
+      </div>
+      <div class="meta">
+        <p><strong>A · Zelts uz krēma</strong></p>
+        <p>Kods: La Mer, Estée Lauder, Elizabeth Arden. Prestiža anti-aging, 1990.</p>
+        <p>Didone plānās līnijas — sievišķīgs, lūst mazā izmērā.</p>
+        <p class="verdict bad">Pretrunā ar pozīciju.</p>
+      </div>
+    </section>
+
+    <!-- B -->
+    <section class="panel brand">
+      <div class="stage">
+        <div class="mono">
+          <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="MF monogramma">
+            <path d="M20 128 V26 h13 L67 96 L101 26 h13 v102 h-12 V49 L72 122 h-9 L32 49 v79 Z" fill="#9A7F5F"/>
+            <path d="M112 128 V26 h62 v11 h-49 v34 h44 v11 h-44 v46 Z" fill="#9A7F5F"/>
+            <path d="M67 62 c0 0 17 20 17 30 a17 17 0 1 1 -34 0 c0 -10 17 -30 17 -30 Z" fill="#12292E" stroke="#9A7F5F" stroke-width="3"/>
+          </svg>
+        </div>
+        <p class="word">Merfonte</p>
+        <div class="tagrow"><p class="tag">For skin over forty</p></div>
+      </div>
+      <div class="small">
+        <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 128 V26 h13 L67 96 L101 26 h13 v102 h-12 V49 L72 122 h-9 L32 49 v79 Z" fill="currentColor"/>
+          <path d="M112 128 V26 h62 v11 h-49 v34 h44 v11 h-44 v46 Z" fill="currentColor"/>
+          <path d="M67 62 c0 0 17 20 17 30 a17 17 0 1 1 -34 0 c0 -10 17 -30 17 -30 Z" fill="#12292E" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <p>uz burciņas vāka</p>
+      </div>
+      <div class="meta">
+        <p><strong>B · Bronza uz jūras tintes</strong></p>
+        <p>Kods: dziļums, ūdens, precizitāte. Neviens kategorijā tur nesēž.</p>
+        <p>Zemāks kontrasts — iztur foliju, gravējumu un 8&nbsp;mm izmēru.</p>
+        <p class="verdict good">Atbalsta pozīciju. Unisex.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <p class="note">
+    ⚠️ Monogramma šeit ir <strong>rupjš SVG tuvinājums</strong>, lai salīdzinātu krāsu un svaru — ne gala zīmējums.
+    Īstajam MF ar lāsi vajag dizainera roku: lāsei jāaug no M ģeometrijas, ne jābūt uzliktai virsū.
+    Bet princips ir redzams — <em>ideja paliek, valoda mainās</em>.
+  </p>
+
+</div>
+</body>
+</html>

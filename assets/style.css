@@ -1,0 +1,579 @@
+/* ============================================================
+   Merfonte — navy & gold
+   Editorial chapters: asymmetric split, scale contrast,
+   image as structure. One accent (gold), hairline only.
+   ============================================================ */
+
+:root {
+  --navy:    #152238;
+  --navy-2:  #0f1b2d;
+  --navy-3:  #1c2b46;
+  --gold:    #b08850;
+  --gold-lo: #cdae7f;
+  --cream:   #ece6db;
+  --dim:     #8d99ab;
+  --hair:    rgba(205,174,127,.20);
+
+  --serif: "Spectral", Georgia, "Times New Roman", serif;
+  --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --pad:  clamp(1.5rem, 5vw, 4.5rem);
+  --page: 76rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+/* Deep water at the top, shallows at the bottom — you scroll toward shore.
+   One gradient across the whole document, so there is no seam to find. */
+body {
+  margin: 0;
+  background: linear-gradient(180deg,
+              #101b2d 0%, #152238 18%, #1a2c44 55%, #223856 100%);
+  background-repeat: no-repeat;
+  color: var(--cream);
+  font-family: var(--sans);
+  /* 16px on phones — the audience is forty-plus and reading on a handset */
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 54rem) {
+  body { font-size: 0.9375rem; }
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* Grain. A long dark gradient bands badly on 8-bit screens; a little noise
+   breaks the rings and adds a printed, tactile surface. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+main, .topbar, .foot { position: relative; z-index: 1; }
+
+/* ---------- type ---------- */
+
+.caption {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--gold-lo);
+  margin: 0;
+}
+
+.num {
+  font-family: var(--serif);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin: 0 0 1.4rem;
+}
+
+a { color: var(--gold-lo); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+
+em { font-style: italic; }
+
+/* ---------- sticky header ---------- */
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 0.55rem var(--pad);
+  background: color-mix(in srgb, var(--navy) 84%, transparent);
+  border-bottom: 1px solid transparent;
+  transform: translateY(-100%);
+  transition: transform .35s ease, border-color .35s ease;
+}
+@supports (backdrop-filter: blur(8px)) {
+  .topbar { backdrop-filter: blur(14px) saturate(1.1); }
+}
+.topbar.visible { transform: none; border-bottom-color: var(--hair); }
+.topbar img { height: clamp(38px, 7vw, 52px); width: auto; }
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(26rem, 78vh, 42rem);
+  min-height: clamp(26rem, 78dvh, 42rem);   /* mobile browser chrome */
+  display: grid;
+  place-items: center;
+  padding: clamp(4rem, 12vh, 8rem) var(--pad) clamp(3rem, 8vh, 5rem);
+  text-align: center;
+}
+
+/* Only a glow — no opaque base, so the document gradient runs straight
+   through the hero and there is nothing to align. */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -2;
+  background: radial-gradient(72% 55% at 50% 38%, rgba(62,98,140,.40) 0%, transparent 70%);
+}
+
+/* Concentric rings at real sizes — no transform:scale, because scaling
+   thins the border with it. Innermost is strongest, each one outward
+   loses weight and light, the way a ripple actually decays. */
+.ripple {
+  position: absolute; top: 46%; left: 50%;
+  width: min(46rem, 124vw); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  z-index: -1; pointer-events: none;
+}
+
+.ripple span {
+  position: absolute; top: 50%; left: 50%;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: var(--gold);
+  transform: translate(-50%, -50%);
+  animation: travel 15s linear infinite;
+}
+
+.ripple span:nth-child(2) { animation-delay: -3s; }
+.ripple span:nth-child(3) { animation-delay: -6s; }
+.ripple span:nth-child(4) { animation-delay: -9s; }
+.ripple span:nth-child(5) { animation-delay: -12s; }
+
+/* The ring travels outward and loses both weight and light on the way —
+   width/height rather than scale, so the stroke stays honest.
+   The range runs past the frame so the outermost ring leaves the view
+   instead of stopping inside it. */
+@keyframes travel {
+  0%   { width: 8%;   height: 8%;   border-width: 1.9px; opacity: 0;    }
+  8%   {                            border-width: 1.7px; opacity: .52;  }
+  45%  {                            border-width: 1.1px; opacity: .26;  }
+  100% { width: 150%; height: 150%; border-width: .5px;  opacity: 0;    }
+}
+
+.wordmark { margin: 1.6rem 0 0; line-height: 0; }
+.wordmark img { width: min(23rem, 70vw); margin: 0 auto; }
+
+/* ---------- wave divider ---------- */
+
+/* Floats across the join rather than sitting between two blocks,
+   and fades out at both edges so it has no endpoints to notice. */
+.waves {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: clamp(46px, 7vw, 72px);
+  margin: calc(clamp(46px, 7vw, 72px) / -2) 0;
+  color: var(--gold);
+  opacity: .62;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+}
+
+/* preserveAspectRatio="none" stretches the geometry — keep the stroke honest */
+.waves path {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.5;
+}
+.waves path:nth-child(2) { opacity: .62; stroke-width: 1.2; }
+
+/* no hairline directly under the waves — that was the visible seam */
+.waves + .chapter { border-top: 0; padding-top: clamp(5rem, 11vw, 8rem); }
+
+/* ---------- thesis ----------
+   One sentence, alone. It carries weight because nothing shares the space,
+   not because it is loud. */
+
+.thesis {
+  padding: clamp(6rem, 17vw, 12rem) var(--pad);
+  text-align: center;
+}
+
+.thesis p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 5.2vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: #f5f0e7;
+  max-width: 20ch;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+.waves + .thesis { padding-top: clamp(6rem, 15vw, 10rem); }
+
+/* ---------- chapter ---------- */
+
+.chapter {
+  border-top: 1px solid var(--hair);
+  padding: clamp(3.5rem, 9vw, 6.5rem) var(--pad);
+}
+
+.chapter-inner {
+  max-width: var(--page);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(1.75rem, 5vw, 4rem);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 54rem) {
+  .chapter-inner { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); align-items: start; }
+  .chapter-inner.flip .lead { order: 2; }
+  .chapter-inner.flip .rest { order: 1; }
+}
+
+/* the big statement */
+.lead .heading {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 6.2vw, 3.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: #f5f0e7;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* the quiet supporting column */
+.rest p {
+  max-width: 34rem;
+  margin: 0 0 1.05rem;
+  color: #cfc9be;
+}
+.rest p:last-child { margin-bottom: 0; }
+.rest .accent { color: var(--gold-lo); }
+
+/* image as structure, not decoration */
+.tile {
+  margin: 2.25rem 0 0;
+  background: var(--navy-3);
+  border: 1px solid var(--hair);
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  text-align: center;
+  color: var(--dim);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+.tile img { width: 100%; height: 100%; object-fit: cover; }
+.tile.tall { aspect-ratio: 3 / 4; }
+
+/* pull-quote treatment for the sharpest line */
+.pull {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+  line-height: 1.35;
+  color: var(--gold-lo);
+  border-left: 1px solid var(--gold);
+  padding-left: 1.15rem;
+  margin: 1.9rem 0 0;
+  max-width: 30rem;
+}
+
+/* ---------- promise strip ---------- */
+
+.promise {
+  border-top: 1px solid var(--hair);
+  padding: clamp(3rem, 7vw, 4.5rem) var(--pad);
+}
+
+/* Five items divide cleanly only at five columns. Below that, drop the
+   dividers entirely — a 3+2 grid with rules looks like a mistake. */
+.promise-inner {
+  max-width: var(--page);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 0;
+}
+@media (min-width: 40rem) { .promise-inner { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 64rem) { .promise-inner { grid-template-columns: repeat(5, 1fr); gap: 0; } }
+
+.promise-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.9rem;
+  padding: 1.4rem clamp(0.5rem, 2vw, 1.4rem);
+}
+
+@media (min-width: 64rem) {
+  .promise-item { border-left: 1px solid var(--hair); padding-block: 1.5rem; }
+  .promise-item:first-child { border-left: 0; }
+}
+
+.promise-item svg {
+  width: clamp(38px, 6vw, 50px);
+  height: auto;
+  color: var(--gold);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  overflow: visible;
+}
+
+/* the line draws itself in */
+.js .promise-item svg path,
+.js .promise-item svg circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.5s cubic-bezier(.33,.1,.2,1);
+}
+.js .promise-item.in svg path,
+.js .promise-item.in svg circle { stroke-dashoffset: 0; }
+
+/* stagger the strokes within each mark */
+.js .promise-item.in svg *:nth-child(2) { transition-delay: .18s; }
+.js .promise-item.in svg *:nth-child(3) { transition-delay: .36s; }
+.js .promise-item.in .swell path:nth-child(2) { transition-delay: .18s; }
+.js .promise-item.in .swell path:nth-child(3) { transition-delay: .36s; }
+
+/* two marks keep breathing once drawn */
+.js .promise-item.in .swell { animation: swell 7s ease-in-out 1.6s infinite alternate; }
+@keyframes swell {
+  from { transform: translateX(-1.1px); }
+  to   { transform: translateX(1.1px); }
+}
+
+.js .promise-item.in .glint { animation: glint 5s ease-in-out 2s infinite; }
+@keyframes glint {
+  0%, 70%, 100% { opacity: 1; }
+  85%           { opacity: .25; }
+}
+
+.promise-item p {
+  margin: 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  color: var(--gold-lo);
+}
+.promise-item p span {
+  display: block;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+}
+
+/* ---------- signup ---------- */
+
+.signup {
+  border-top: 1px solid var(--hair);
+  padding: clamp(3.5rem, 9vw, 6rem) var(--pad);
+}
+.signup-inner { max-width: var(--page); margin: 0 auto; }
+.signup .heading {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.7rem, 4.6vw, 2.6rem);
+  line-height: 1.12;
+  color: #f5f0e7;
+  margin: 0.8rem 0 1rem;
+}
+.signup p { max-width: 32rem; margin: 0; color: #cfc9be; }
+
+.capture {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.9rem;
+  margin: 2rem 0 1.2rem;
+  max-width: 28rem;
+}
+.capture input {
+  flex: 1 1 13rem; min-width: 0;
+  padding: 0.6rem 0.15rem;
+  font: inherit;
+  color: var(--cream);
+  background: transparent;
+  border: 0; border-bottom: 1px solid var(--hair);
+  border-radius: 0;
+}
+.capture input::placeholder { color: var(--dim); }
+.capture input:focus { outline: none; border-bottom-color: var(--gold); }
+
+.capture button {
+  flex: 0 0 auto;
+  padding: 0.6rem 0;
+  font: inherit;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold-lo);
+  background: transparent;
+  border: 0; border-bottom: 1px solid var(--gold);
+  border-radius: 0;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease;
+}
+.capture button:hover { color: #f5f0e7; border-bottom-color: var(--gold-lo); }
+
+.consent {
+  max-width: 30rem;
+  margin: 0 0 3rem;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: var(--dim);
+}
+
+/* sits apart from the fine print, quieter tracking than the icon labels */
+.note {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  line-height: 1.6;
+  color: var(--dim);
+}
+.note a { color: var(--gold-lo); }
+
+/* ---------- document pages ---------- */
+
+body.flat { background: #101b2d; }
+
+.doc {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 9vw, 6rem) var(--pad) clamp(3rem, 7vw, 5rem);
+}
+
+.doc .num a { color: var(--gold-lo); }
+
+.doc-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.1;
+  color: #f5f0e7;
+  margin: 1.6rem 0 1.4rem;
+}
+
+.doc-lede {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #ddd6ca;
+  margin: 0 0 3rem;
+}
+
+.doc h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  color: #f0eade;
+  margin: 2.6rem 0 .7rem;
+}
+
+.doc p { margin: 0 0 1rem; color: #cfc9be; }
+.doc strong { font-weight: 400; color: #ece6db; }
+.nowrap { white-space: nowrap; }
+
+.doc-foot {
+  margin-top: 3rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--hair);
+  font-size: .8125rem;
+  color: var(--dim);
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+  border-top: 1px solid var(--hair);
+  padding: 1.8rem var(--pad) 3rem;
+}
+.foot-inner {
+  max-width: var(--page);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2rem;
+  justify-content: space-between;
+}
+.foot .caption { color: var(--dim); letter-spacing: .16em; }
+
+/* ---------- reveal ---------- */
+
+.js .r {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+.js .r.in { opacity: 1; transform: none; }
+
+/* display type wipes up from its own baseline */
+.js .heading.r {
+  clip-path: inset(0 0 100% 0);
+  transition: opacity .9s ease, transform .9s ease,
+              clip-path 1.15s cubic-bezier(.22,.61,.36,1);
+}
+.js .heading.r.in { clip-path: inset(0 0 -14% 0); }
+
+/* chapter label types itself in from the left */
+.js .num.r {
+  clip-path: inset(0 100% 0 0);
+  transition: opacity .7s ease, transform .7s ease,
+              clip-path 1s cubic-bezier(.22,.61,.36,1);
+}
+.js .num.r.in { clip-path: inset(0 -3% 0 0); }
+
+/* the gold rule beside a pull-quote draws downward */
+.pull { border-left: 0; position: relative; }
+.pull::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px; background: var(--gold);
+  transform-origin: top;
+}
+.js .pull.r::before {
+  transform: scaleY(0);
+  transition: transform 1.05s cubic-bezier(.22,.61,.36,1) .2s;
+}
+.js .pull.r.in::before { transform: scaleY(1); }
+
+/* hero rings drift with the scroll */
+.ripple { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .r { opacity: 1; transform: none; transition: none; }
+  .js .heading.r, .js .num.r { clip-path: none; }
+  .js .pull.r::before { transform: none; transition: none; }
+  .js .promise-item svg path,
+  .js .promise-item svg circle { stroke-dashoffset: 0; transition: none; }
+  .js .promise-item.in .swell,
+  .js .promise-item.in .glint { animation: none; }
+  .topbar { transition: none; }
+  .ripple { display: none; }
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
