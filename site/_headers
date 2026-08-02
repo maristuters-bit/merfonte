@@ -7,7 +7,10 @@
   Cross-Origin-Opener-Policy: same-origin
 
 /assets/*
-  Cache-Control: public, max-age=31536000, immutable
+  # The site is still changing daily. "immutable" would pin a year-old
+  # logo in every browser that has already seen it. Switch back to
+  # long immutable caching once filenames carry a content hash.
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /privacy
   Cache-Control: public, max-age=3600
