@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+
+# wrangler build/auth cache — account ids, not secrets, but not source either
+.wrangler/
