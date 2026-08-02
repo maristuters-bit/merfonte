@@ -198,8 +198,10 @@ em { font-style: italic; }
    One sentence, alone. It carries weight because nothing shares the space,
    not because it is loud. */
 
+/* Generous, but not a void. Too much emptiness stops reading as weight
+   and starts reading as an accident. */
 .thesis {
-  padding: clamp(6rem, 17vw, 12rem) var(--pad);
+  padding: clamp(4.5rem, 10vw, 7.5rem) var(--pad);
   text-align: center;
 }
 
@@ -236,7 +238,7 @@ em { font-style: italic; }
 .js .thesis p.in::before,
 html:not(.js) .thesis p::before { transform: translateX(-50%) scaleX(1); }
 
-.waves + .thesis { padding-top: clamp(6rem, 15vw, 10rem); }
+.waves + .thesis { padding-top: clamp(5rem, 11vw, 8rem); }
 
 /* ---------- chapter ---------- */
 
