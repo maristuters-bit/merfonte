@@ -220,11 +220,17 @@
         When there is something real to show. No weekly newsletter, no countdown.
       </p>
 
-      <!-- ⚠ SETUP: create a free form at formspree.io and replace YOUR_FORM_ID. -->
-      <form class="capture r" data-delay="180" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form class="capture r" data-delay="180" action="https://formspree.io/f/xzdnlwkn" method="POST">
         <label class="visually-hidden" for="email">Email address</label>
         <input id="email" type="email" name="email" required
                autocomplete="email" placeholder="your@email.com">
+
+        <!-- readable subject in the inbox -->
+        <input type="hidden" name="_subject" value="Merfonte waitlist — new signup">
+        <!-- honeypot: bots fill every field, people never see this one -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+               aria-hidden="true" class="visually-hidden">
+
         <button type="submit">Keep me posted</button>
       </form>
 
