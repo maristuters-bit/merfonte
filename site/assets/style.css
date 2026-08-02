@@ -207,6 +207,7 @@ em { font-style: italic; }
    never arrives. The colour is what tells the eye this is a different kind
    of sentence. */
 .thesis p {
+  position: relative;
   font-family: var(--serif);
   font-weight: 300;
   font-size: clamp(1.55rem, 5vw, 2.7rem);
@@ -215,8 +216,25 @@ em { font-style: italic; }
   color: var(--gold-lo);
   max-width: 20ch;
   margin: 0 auto;
+  padding-top: clamp(2.2rem, 5vw, 3.2rem);
   text-wrap: balance;
 }
+
+/* The same device the logo uses around its own line — a short rule that
+   says "a statement", not "a heading". */
+.thesis p::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  width: clamp(3rem, 9vw, 4.5rem);
+  height: 1px;
+  background: var(--gold);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 1.1s cubic-bezier(.22,.61,.36,1) .25s;
+}
+.js .thesis p.in::before,
+html:not(.js) .thesis p::before { transform: translateX(-50%) scaleX(1); }
 
 .waves + .thesis { padding-top: clamp(6rem, 15vw, 10rem); }
 
