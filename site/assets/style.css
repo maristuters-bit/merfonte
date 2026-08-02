@@ -203,13 +203,16 @@ em { font-style: italic; }
   text-align: center;
 }
 
+/* Gold, not cream — otherwise it reads as a chapter heading whose chapter
+   never arrives. The colour is what tells the eye this is a different kind
+   of sentence. */
 .thesis p {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(1.6rem, 5.2vw, 3rem);
-  line-height: 1.2;
-  letter-spacing: -0.012em;
-  color: #f5f0e7;
+  font-size: clamp(1.55rem, 5vw, 2.7rem);
+  line-height: 1.22;
+  letter-spacing: -0.008em;
+  color: var(--gold-lo);
   max-width: 20ch;
   margin: 0 auto;
   text-wrap: balance;
