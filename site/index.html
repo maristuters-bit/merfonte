@@ -23,10 +23,10 @@
 <link rel="apple-touch-icon" href="assets/img/touch-icon-v2.png">
 <meta name="theme-color" content="#101b2d">
 
-<!-- PROTOTYPE NOTE: Spectral and Inter stand in for the final licensed faces. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts/inter-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts/spectral-300-latin.woff2">
 <link rel="stylesheet" href="assets/style.css">
 <script>document.documentElement.classList.add('js');</script>
 
@@ -48,9 +48,14 @@
 <body>
 
 <div class="topbar" id="topbar" aria-hidden="true">
-  <img src="assets/img/logo-header.png"
-       srcset="assets/img/logo-header.png 560w, assets/img/logo-header@2x.png 1120w"
-       alt="" width="560" height="266">
+  <picture>
+    <source type="image/webp"
+            srcset="assets/img/logo-header.webp 200w, assets/img/logo-header@2x.webp 400w"
+            sizes="120px">
+    <img src="assets/img/logo-header.png"
+         srcset="assets/img/logo-header.png 200w, assets/img/logo-header@2x.png 400w"
+         sizes="120px" alt="" width="200" height="90" loading="lazy">
+  </picture>
 </div>
 
 <main>
@@ -63,11 +68,16 @@
     <div class="hero-mark">
       <p class="caption r">Launching 2026</p>
       <h1 class="wordmark r" data-delay="80">
-        <img src="assets/img/logo-gold.png"
-             srcset="assets/img/logo-gold.png 900w, assets/img/logo-gold@2x.png 1800w"
-             sizes="(max-width: 34rem) 78vw, 27rem"
-             alt="Merfonte — sea, source, science"
-             width="900" height="495" fetchpriority="high">
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/img/logo-gold.webp 560w, assets/img/logo-gold@2x.webp 1120w"
+                  sizes="(max-width: 34rem) 70vw, 23rem">
+          <img src="assets/img/logo-gold.png"
+               srcset="assets/img/logo-gold.png 560w, assets/img/logo-gold@2x.png 1120w"
+               sizes="(max-width: 34rem) 70vw, 23rem"
+               alt="Merfonte — sea, source, science"
+               width="560" height="292" fetchpriority="high">
+        </picture>
       </h1>
     </div>
   </header>

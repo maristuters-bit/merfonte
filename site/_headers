@@ -6,11 +6,9 @@
   Strict-Transport-Security: max-age=31536000
   Cross-Origin-Opener-Policy: same-origin
 
+# Fonts and images carry versioned names; anything replaced gets a new one.
 /assets/*
-  # The site is still changing daily. "immutable" would pin a year-old
-  # logo in every browser that has already seen it. Switch back to
-  # long immutable caching once filenames carry a content hash.
-  Cache-Control: public, max-age=300, stale-while-revalidate=3600
+  Cache-Control: public, max-age=31536000, immutable
 
 /privacy
   Cache-Control: public, max-age=3600
