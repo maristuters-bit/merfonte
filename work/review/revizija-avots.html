@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<title>Merfonte — revīzija</title>
+<style>
+/*FONTS*/
+
+:root{
+  --navy:#152238;
+  --navy-d:#101b2d;
+  --gold:#8a6733;
+  --gold-lo:#b08850;
+  --cream:#faf7f1;
+  --paper:#ffffff;
+  --ink:#1b2536;
+  --dim:#6b7688;
+  --hair:#e2dccf;
+  --red:#9d3427;
+  --amber:#8a6733;
+  --green:#2f6144;
+}
+
+*{box-sizing:border-box;}
+
+@page{
+  size:A4;
+  margin:15mm 15mm 13mm;
+}
+@page:first{ margin:0; }
+
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+body{
+  margin:0;
+  font-family:'Spectral',Georgia,serif;
+  font-weight:400;
+  font-size:9.35pt;
+  line-height:1.55;
+  orphans:2;
+  widows:2;
+  color:var(--ink);
+  background:var(--paper);
+}
+
+.chapter-head{ break-before:page; }
+.chapter-head.nobr{ break-before:auto; }
+
+/* ---------- cover ---------- */
+
+.cover{
+  background:#152238;   /* flat: print gradients band into visible steps */
+  color:var(--cream);
+  height:297mm;
+  padding:38mm 22mm 20mm;
+  display:flex;
+  flex-direction:column;
+  break-after:page;
+}
+.cover .mark{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  font-size:12pt;
+  color:var(--gold-lo);
+  margin:0 0 auto;
+}
+.cover h1{
+  font-family:'Spectral',serif;
+  font-weight:300;
+  font-size:32pt;
+  line-height:1.14;
+  letter-spacing:-.01em;
+  margin:0 0 10mm;
+  max-width:15ch;
+}
+.cover .lede{
+  font-size:11.5pt;
+  line-height:1.6;
+  color:#cfc9be;
+  max-width:44ch;
+  margin:0 0 14mm;
+  font-weight:300;
+}
+.cover .rule{
+  height:1px;
+  background:rgba(205,174,127,.34);
+  margin:0 0 6mm;
+}
+.cover .meta{
+  font-family:'Inter',sans-serif;
+  font-size:8pt;
+  font-weight:400;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#8d99ab;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* ---------- typography ---------- */
+
+h2{
+  font-family:'Spectral',serif;
+  font-weight:300;
+  font-size:17.5pt;
+  line-height:1.15;
+  letter-spacing:-.008em;
+  color:var(--navy);
+  margin:0 0 1.5mm;
+  break-after:avoid;
+}
+h3{
+  font-family:'Spectral',serif;
+  font-weight:400;
+  font-size:11pt;
+  line-height:1.28;
+  color:var(--navy);
+  margin:5.6mm 0 1.2mm;
+  break-after:avoid;
+}
+h4{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  font-size:8pt;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:4mm 0 1.2mm;
+  break-after:avoid;
+}
+.num{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  font-size:7.6pt;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 3mm;
+}
+.chapter-head{
+  border-top:2px solid var(--navy);
+  padding-top:3mm;
+  margin-bottom:5mm;
+}
+.chapter-head .sub{
+  font-size:10.4pt;
+  color:var(--dim);
+  margin:1.5mm 0 0;
+  max-width:52ch;
+  font-style:italic;
+}
+p{ margin:0 0 2.7mm; }
+strong{ font-weight:400; color:var(--navy); background:linear-gradient(transparent 62%, rgba(176,136,80,.22) 62%); }
+em{ font-style:italic; }
+ul{ margin:0 0 2.7mm; padding-left:5mm; }
+li{ margin:0 0 1.6mm; }
+li::marker{ color:var(--gold-lo); }
+a{ color:var(--gold); }
+
+code,.mono{
+  font-family:'DejaVu Sans Mono',ui-monospace,Menlo,monospace;
+  font-size:8.2pt;
+  background:#f4f1ea;
+  padding:.4mm 1mm;
+  border-radius:1px;
+  color:#4a3d28;
+}
+pre{
+  font-family:'DejaVu Sans Mono',ui-monospace,Menlo,monospace;
+  font-size:7.9pt;
+  line-height:1.5;
+  background:#f7f5ef;
+  border-left:2px solid var(--gold-lo);
+  padding:2.2mm 2.9mm;
+  margin:0 0 2.9mm;
+  white-space:pre-wrap;
+  color:#3f4a5c;
+  break-inside:avoid;
+}
+pre .c{ color:#8a9099; }
+pre .del{ color:var(--red); }
+pre .add{ color:#2f6144; }
+
+/* ---------- components ---------- */
+
+.verdict{
+  border:1px solid var(--hair);
+  border-left:3px solid var(--gold-lo);
+  background:#fbf9f5;
+  padding:3.8mm 4.4mm;
+  margin:0 0 5mm;
+  break-inside:avoid;
+}
+.verdict p:last-child{ margin-bottom:0; }
+.verdict .k{
+  font-family:'Inter',sans-serif;
+  font-size:7.6pt;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 2mm;
+}
+
+.pull{
+  font-family:'Spectral',serif;
+  font-weight:300;
+  font-size:12pt;
+  line-height:1.32;
+  color:var(--navy);
+  border-left:2px solid var(--gold-lo);
+  padding-left:4mm;
+  margin:4mm 0;
+  break-inside:avoid;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-family:'Inter',sans-serif;
+  font-size:7.9pt;
+  line-height:1.42;
+  margin:0 0 4mm;
+  break-inside:avoid;
+}
+th{
+  text-align:left;
+  font-weight:400;
+  font-size:7.2pt;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border-bottom:1px solid var(--navy);
+  padding:0 3mm 1.6mm 0;
+  vertical-align:bottom;
+}
+td{
+  padding:1.7mm 3mm 1.7mm 0;
+  border-bottom:1px solid var(--hair);
+  vertical-align:top;
+  color:var(--ink);
+}
+td:last-child,th:last-child{ padding-right:0; }
+
+.sev{
+  display:inline-block;
+  font-family:'Inter',sans-serif;
+  font-size:6.6pt;
+  font-weight:400;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  padding:.7mm 1.8mm;
+  border-radius:1px;
+  white-space:nowrap;
+}
+.s-hi{ background:#f6e4e0; color:#8e2f22; }
+.s-md{ background:#f7ecd9; color:#7a5a24; }
+.s-lo{ background:#eceff3; color:#5d6878; }
+
+.finding{
+  margin:0 0 5mm;
+}
+.finding-head{
+  break-inside:avoid;
+  break-after:avoid;
+  display:flex;
+  align-items:baseline;
+  gap:3mm;
+  border-bottom:1px solid var(--hair);
+  padding-bottom:1.6mm;
+  margin-bottom:2.6mm;
+}
+.finding-head .t{
+  font-family:'Spectral',serif;
+  font-weight:400;
+  font-size:11.2pt;
+  color:var(--navy);
+  flex:1;
+}
+.finding-head .n{
+  font-family:'Inter',sans-serif;
+  font-size:8pt;
+  color:var(--gold-lo);
+  letter-spacing:.1em;
+}
+.where{
+  font-family:'Inter',sans-serif;
+  font-size:7.6pt;
+  color:var(--dim);
+  letter-spacing:.03em;
+  margin:0 0 2.4mm;
+}
+
+.arw{ font-family:'DejaVu Sans Mono',monospace; }
+.cols{ display:flex; gap:7mm; }
+.cols>div{ flex:1; }
+
+.foot{
+  margin-top:6mm;
+  padding-top:2.2mm;
+  border-top:1px solid var(--hair);
+  font-family:'Inter',sans-serif;
+  font-size:7.2pt;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--dim);
+  display:flex;
+  justify-content:space-between;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ VĀKS ══════════ -->
+<section class="cover">
+  <p class="mark">Merfonte</p>
+  <h1>Vārds, lapa un tas, kas tos abus klusi bojā.</h1>
+  <p class="lede">
+    Revīzija pirms atvēršanas: viens zīmola lēmums, četri satura griezumi
+    un seši tehniski atradumi — no kuriem divi šobrīd strādā pretī visam
+    pārējam, ko lapa cenšas pateikt.
+  </p>
+  <div class="rule"></div>
+  <p class="meta"><span>Revīzija</span><span>2026-08-08</span></p>
+</section>
+
+<!-- ══════════ 1. VERDIKTS ══════════ -->
+<section class="page">
+  <div class="chapter-head">
+    <p class="num">01 — Verdikts</p>
+    <h2>Vārds paliek. Stāsts iet ārā.<br>Un fonts nekad nav strādājis.</h2>
+    <p class="sub">Trīs teikumi, ja tālāk nelasi.</p>
+  </div>
+
+  <div class="verdict">
+    <p class="k">Kopsavilkums</p>
+    <p><strong>Merfonte ir pietiekami labs vārds, lai to nemainītu, un pietiekami tukšs, lai to nepaskaidrotu.</strong>
+    Problēma nekad nav bijusi glamūrs — problēma ir tā, ka lapa vārdu <em>aizstāv</em>,
+    un aizstāvēšanās ir vienīgā vieta, kur zīmols izklausās pēc mārketinga.</p>
+    <p><strong>Lapas pamatteksts nekad nav rādījies tā, kā tas ir uzprojektēts.</strong>
+    Inter ir mainīgais fonts, kas deklarēts kā statisks; <code>font-weight: 300</code>
+    neinstancējas, un viss pamatteksts renderējas Regular svarā. Dizains prasa Light.
+    Tas ir tehnisks atradums ar estētiskām sekām — daļa no «pārāk smagi» sajūtas nāk no šejienes.</p>
+    <p><strong>Un <code>style.css</code> ar <code>site.js</code> ir iesaldēti uz gadu.</strong>
+    Kešošanas noteikums tos ķer, bet failu nosaukumos nav versiju. Katrs turpmākais
+    labojums atgriezušos apmeklētājus nesasniegs līdz 2027. gadam.</p>
+  </div>
+
+  <h3>Kā lasīt šo dokumentu</h3>
+  <p>
+    Nodaļa 02 ir vienīgais zīmola lēmums, un tas ir tavs, ne mans — es dodu argumentu,
+    ne spriedumu. Nodaļas 03 un 04 ir darbs, ko var izdarīt šonedēļ. Nodaļa 05 ir tas,
+    kā trūkst, lai lapa vispār zinātu, vai tā strādā. Nodaļa 06 saliek secībā.
+  </p>
+
+  <p class="pull">
+    Neviens no atradumiem nav par to, ka lapa būtu slikta. Tie visi ir par to,
+    ka lapa sola precizitāti, un tāpēc katra neprecizitāte tajā maksā dārgāk
+    nekā jebkurā citā lapā.
+  </p>
+
+  <h3>Kas ir pārbaudīts</h3>
+  <table>
+    <tr><th style="width:32%">Avots</th><th>Ko apskatīju</th></tr>
+    <tr><td class="mono">site/index.html</td><td>269 rindas — struktūra, meta, schema.org, forma</td></tr>
+    <tr><td class="mono">site/assets/style.css</td><td>670 rindas — palete, tipogrāfija, @font-face, kustība</td></tr>
+    <tr><td class="mono">site/assets/site.js</td><td>117 rindas — reveal, sticky bar, parallakse</td></tr>
+    <tr><td class="mono">site/assets/fonts/</td><td>8 faili — pārbaudīti pa baitam un pēc iekšējiem metadatiem</td></tr>
+    <tr><td class="mono">site/_headers, _redirects</td><td>kešošana, drošības galvenes, novirzes</td></tr>
+    <tr><td class="mono">site/robots.txt, sitemap.xml</td><td>indeksācija</td></tr>
+    <tr><td class="mono">site/privacy.html, 404.html</td><td>GDPR pilnība, kļūdas lapa</td></tr>
+    <tr><td class="mono">work/starta-sortiments.md</td><td>sortimenta lēmums pret zīmola solījumu</td></tr>
+  </table>
+</section>
+
+<!-- ══════════ 2. VĀRDS ══════════ -->
+<section class="page">
+  <div class="chapter-head">
+    <p class="num">02 — Vārds</p>
+    <h2>Paturi. Beidz skaidrot.</h2>
+    <p class="sub">Godīgais lasījums, tā cena, un kāpēc cena tomēr ir jāmaksā.</p>
+  </div>
+
+  <h3>Trīs vainas, kas nav gaumes jautājums</h3>
+
+  <h4>Franciski tas nozīmē čugunu</h4>
+  <p>
+    <code>mer</code> ir franču «jūra» — un tas iestata lasītāja valodu jau pirmajā zilbē.
+    Bet <code>fonte</code> franciski ir <em>čuguns</em>, un <code>la fonte</code> — kušana.
+    Beļģijas franciski runājošais, kas ir tavā <code>areaServed</code> sarakstā,
+    lasa «jūras čugunu». Itāļu nozīme, uz kuras balstās viss stāsts, prasa lasītājam
+    vārda vidū pārslēgt valodu, un nekas vārdā nenorāda, ka tas jādara.
+  </p>
+
+  <h4>Angliski un holandiski gala «e» nokrīt</h4>
+  <p>
+    Sanāk <em>Merfont</em>. Tas skan pēc burtu lietuves, ne pēc ādas kopšanas.
+    Un <code>mer-</code> angliski runājošā ausī ir <em>mermaid</em> pirms tā ir jūra —
+    nāriņa, ne zinātne. Praktiskā seka: uz vārda no dzirdes nevar būvēt kanālu.
+    Radio, podkāsts, mutvārdu ieteikums — visur, kur cilvēkam vārds jāuzraksta no galvas,
+    daļa trafika pazūd. Tas nav iemesls mainīt vārdu; tas ir iemesls neieguldīt tur budžetu.
+  </p>
+
+  <h4>Izdomāts skaists vārds ir tieši tās nozares paņēmiens, pret kuru zīmols stājas</h4>
+  <p>
+    La Mer, Filorga, Rodial, Lumene, Elemis. Merfonte iekļaujas šajā rindā bez šuves.
+    Zīmols, kas lapā saka <em>«mechanism, not a mood»</em>, izvēlējās noskaņas vārdu.
+    Tā nav katastrofa — bet tā ir pretruna, un tu to jūti.
+  </p>
+
+  <h3>Kas vārdā ir tiešām labs</h3>
+  <p>
+    Tas ir tīrs un piesavināms. Nulle sadursmju, tūlītējs pirmais rezultāts pēc sava vārda,
+    domēns rokā. Un — svarīgākais — <strong>pie €60 tev izdomāts vārds ir vajadzīgs.</strong>
+    Josla «vārds ir fakts» pieder The Ordinary par €8. Plaša, klīniska mute kopā ar dārgu cenu
+    lasās kā pārmaksa. Zelts uz navy nav pretenciozitāte, tas ir cenas signāls, un tas dara darbu.
+  </p>
+
+  <div class="verdict">
+    <p class="k">Lēmums</p>
+    <p>Vārds ir kompromiss, un tas ir <em>pareizais</em> kompromiss. Bet kompromisu
+    nedrīkst aizstāvēt — aizstāvēšana to pārvērš par apgalvojumu, un apgalvojums prasa pierādījumu,
+    kura nav.</p>
+    <p><strong>Tāpēc: vārds paliek, un nodaļa «The name» iet ārā pilnībā.</strong>
+    Ne pārrakstīt uz «avotu» — izdzēst. Vārds, ko skaidro, taisa mārketingu;
+    vārds, ko vienkārši lieto, ir vārds. Aesop neskaidro. Byredo neskaidro.
+    Pati skaidrošana ir tā pazīme, ko tu sajuti kā glamūru.</p>
+  </div>
+
+  <h3>Un otra puse: stāsts nesedz preci</h3>
+  <p>
+    Šī ir patiesā problēma zem visa pārējā. Vārds sola jūru. Sortiments
+    (<code>work/starta-sortiments.md</code>) ir keramīdi, holesterīns, taukskābes,
+    retinoīds, C vitamīns. <strong>Nulle jūras izcelsmes sastāvdaļu.</strong>
+    Zīmols, kas savu vienīgo stāstu balsta uz jūru un tad pārdod barjeras krēmu,
+    uzmanīgam klientam izskatās tieši tāpat kā jebkurš cits stāsts — un tu pats esi
+    uzrakstījis, ka nedari tā.
+  </p>
+  <p>
+    Divi izejas ceļi. <em>Nopelnīt</em> jūru — vismaz viens jūras izcelsmes produkts
+    ar publicētiem datiem starta partijā; dārgi, un <code>starta-sortiments.md</code>
+    pats pret to argumentē. Vai <em>pārstāt to solīt</em> — izmest jūras stāstu,
+    paturēt vārdu kā vārdu. Otrais ir bezmaksas un notiek šonedēļ.
+  </p>
+</section>
+
+<!-- ══════════ 3. SATURS ══════════ -->
+<section class="page">
+  <div class="chapter-head">
+    <p class="num">03 — Lapas saturs</p>
+    <h2>Četri griezumi.</h2>
+    <p class="sub">Neviens no tiem nepievieno tekstu. Visi četri to noņem.</p>
+  </div>
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">3.1</span><span class="t">Tēze ir zem locījuma</span></div>
+    <p class="where">site/index.html:75–95 · site/assets/style.css:179–189, 271–287</p>
+    <p>
+      Hero ir <code>78vh</code> augsts, un tajā ir tikai «Launching 2026» un zelta logo
+      ar ripple animāciju. Tēze <em>«For skin that has changed»</em> sēž atsevišķā sekcijā
+      <strong>zem viļņiem</strong> — zem locījuma. Pirmais ekrāns tātad ir skaists vārds,
+      zelts, navy un nekādas informācijas.
+    </p>
+    <p>
+      <strong>Tā ir smaržu lansēšanas lapa.</strong> Te dzimst «pārāk glamūrīgi» sajūta —
+      nevis vārdā, bet tajā, ka virs locījuma nav neviena fakta.
+    </p>
+    <p>
+      Pacel tēzi hero iekšā, zem logo. Tas ir viens pārvietots bloks, un tas atdod
+      pirmajam ekrānam saturu, nezaudējot ne gramu no vizuālā.
+    </p>
+  </div>
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">3.2</span><span class="t">Nodaļa 02 «The name» — izdzēst</span></div>
+    <p class="where">site/index.html:126–150</p>
+    <p>
+      Vesela nodaļa velta tam, lai vārdu attaisnotu — jūras avoti, jūrnieku mucas,
+      itāļu <em>fonte</em>. Noslēgumā rinda <em>«We took the name because it describes
+      a mechanism, not a mood»</em> — tieši tas teikums, kas nodod visu: ja vārds
+      aprakstītu mehānismu, teikums nebūtu vajadzīgs.
+    </p>
+    <p>
+      Izdzēšot to, 03 «The position» kļūst par 02, un lapa no četrām nodaļām saīsinās
+      līdz trim. Mazāk pašaprakstīšanās ir precīzāka lapa.
+    </p>
+  </div>
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">3.3</span><span class="t">«Marine source» solījumu rindā</span></div>
+    <p class="where">site/index.html:180–188</p>
+    <p>
+      Piecu solījumu rindā <em>«Marine source — the name, and the story»</em> ir vienīgais,
+      kas nav solījums par produktu. Pārējie četri ir pārbaudāmi. Šis saka «tāds ir mūsu vārds».
+    </p>
+    <p>Aizvieto ar kaut ko, kas ir taisnība par preci un ko klients var pārbaudīt. Piemēram:</p>
+    <pre><span class="del">− Marine source · the name, and the story</span>
+<span class="add">+ Barrier first · ceramides, cholesterol, fatty acids</span></pre>
+    <p>
+      Tas saskaņo lapu ar <code>starta-sortiments.md</code>, kur barjeras krēms jau ir
+      izvēlēts par akcentu — un ar pašas lapas 03. nodaļu, kur divi no trim minētajiem
+      mehānismiem ir barjera un lipīdi.
+    </p>
+  </div>
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">3.4</span><span class="t">Sauklis, kas izliekas par alt tekstu</span></div>
+    <p class="where">site/index.html:23, 90 · og:image:alt un logo alt</p>
+    <p>
+      <code>alt="Merfonte — sea, source, science"</code>. Trīs aliterējoši vārdi ir
+      visreklāmiskākā konstrukcija, kāda vispār eksistē — un tā atrodas vietā, kas pēc
+      definīcijas ir apraksts neredzīgam lasītājam. Ekrānlasītājs saņem saukli, ne informāciju.
+    </p>
+    <pre><span class="del">− alt="Merfonte — sea, source, science"</span>
+<span class="add">+ alt="Merfonte"</span></pre>
+    <p>Logo attēlo vārdu. Alt teksts ir vārds. Tas ir viss, kas tur ir.</p>
+  </div>
+</section>
+
+<!-- ══════════ 4. TEHNISKAIS ══════════ -->
+<section class="page">
+  <div class="chapter-head">
+    <p class="num">04 — Tehniskie atradumi</p>
+    <h2>Seši, no kuriem divi ir nopietni.</h2>
+    <p class="sub">Visi pārbaudīti repozitorijā, ne uzminēti.</p>
+  </div>
+
+  <table>
+    <tr><th style="width:7%">#</th><th style="width:38%">Atradums</th><th style="width:16%">Smagums</th><th>Sekas</th></tr>
+    <tr><td>4.1</td><td>Inter deklarēts kā statisks, bet ir mainīgs</td><td><span class="sev s-hi">Augsts</span></td><td>Viss pamatteksts renderējas nepareizā svarā; 133 KB lieki</td></tr>
+    <tr><td>4.2</td><td>CSS un JS iesaldēti uz gadu</td><td><span class="sev s-hi">Augsts</span></td><td>Turpmākie labojumi nesasniedz atgriezušos apmeklētājus</td></tr>
+    <tr><td>4.3</td><td>Forma aizved prom no merfonte.com</td><td><span class="sev s-md">Vidējs</span></td><td>Vienīgā konversija beidzas svešā lapā</td></tr>
+    <tr><td>4.4</td><td>Nav nekādu mērījumu</td><td><span class="sev s-md">Vidējs</span></td><td>Nav zināms, vai lapa vispār strādā</td></tr>
+    <tr><td>4.5</td><td>Nav CSP, lai gan pārējās galvenes ir</td><td><span class="sev s-lo">Zems</span></td><td>Nepilnīga citādi pamatīga drošības konfigurācija</td></tr>
+    <tr><td>4.6</td><td><code>sitemap.xml</code> <code>lastmod</code> novecojis</td><td><span class="sev s-lo">Zems</span></td><td>Google domā, ka saturs nav mainījies kopš 02.08.</td></tr>
+  </table>
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">4.1</span><span class="t">Inter Light neeksistē</span><span class="sev s-hi">Augsts</span></div>
+    <p class="where">site/assets/style.css:4–35 · site/assets/fonts/inter-*.woff2</p>
+    <p>Divi fontu faili ir <strong>identiski pa baitam</strong>:</p>
+    <pre>65850a373e258f1c897a2b3d75eb74de  inter-300-latin.woff2
+65850a373e258f1c897a2b3d75eb74de  inter-400-latin.woff2
+01ba6c2a184b8cba08b0d57167664d75  inter-300-latin-ext.woff2
+01ba6c2a184b8cba08b0d57167664d75  inter-400-latin-ext.woff2</pre>
+    <p>Iekšējie metadati paskaidro, kāpēc:</p>
+    <pre>inter-300-latin.woff2   usWeightClass=400  variable=True   Inter / Regular
+inter-400-latin.woff2   usWeightClass=400  variable=True   Inter / Regular
+spectral-300-latin.woff2  usWeightClass=300  variable=False  Spectral Light
+spectral-400-latin.woff2  usWeightClass=400  variable=False  Spectral</pre>
+    <p>
+      Inter ir <strong>mainīgais fonts</strong>, bet <code>@font-face</code> to deklarē ar
+      vienu statisku vērtību <code>font-weight: 300</code>. Pārliktā svara ass tādā gadījumā
+      netiek instancēta — pārlūks lieto faila noklusējuma instanci, kas ir 400.
+      Spectral ir pareizi: divi īsti statiski faili, Light un Regular.
+    </p>
+    <p>
+      Sekas ir lielākas, nekā izskatās. <code>body</code> lieto <code>var(--sans)</code> ar
+      <code>font-weight: 300</code> — tātad <strong>viss lapas pamatteksts ir domāts Inter Light
+      un rādās Inter Regular.</strong> Light lasās gaisīgi un atturīgi; Regular lasās smagāk
+      un parastāk. Daļa no sajūtas, ka lapa nav gluži tur, kur vajag, nāk tieši no šejienes —
+      un tas nav dizaina lēmums, tas ir neizpildīts dizaina lēmums.
+    </p>
+    <p>Turklāt pārlūks pirmajā ielādē lejupielādē vienus un tos pašus baitus divreiz — <strong>133 KB tīra zuduma</strong>. Labojums:</p>
+    <pre><span class="c">/* viens pāris @font-face, nevis divi — ar svara diapazonu */</span>
+@font-face {
+  font-family:'Inter';
+  <span class="add">font-weight: 100 900;</span>   <span class="c">/* bija: 300, un atsevišķi 400 */</span>
+  font-display: swap;
+  src: url('/assets/fonts/inter-var-latin-v2.woff2') format('woff2');
+  unicode-range: U+0000-00FF, …;
+}</pre>
+    <p>
+      Un izdzēs divus dublētos failus. Pārbaude pēc labojuma: <code>font-weight: 300</code>
+      un <code>400</code> uz vienas rindas jāizskatās acīmredzami atšķirīgi.
+    </p>
+  </div>
+
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">4.2</span><span class="t">CSS un JS iesaldēti līdz 2027. gadam</span><span class="sev s-hi">Augsts</span></div>
+    <p class="where">site/_headers · site/assets/style.css, site.js</p>
+    <p>Kešošanas noteikums:</p>
+    <pre><span class="c"># Fonts and images carry versioned names; anything replaced gets a new one.</span>
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable</pre>
+    <p>
+      Komentārs ir pareizs par fontiem un attēliem — tie <em>tiešām</em> ir versionēti
+      (<code>logo-gold-v2</code>, <code>og-v3</code>). Bet glob <code>/assets/*</code>
+      ķer arī <code>style.css</code> un <code>site.js</code>, un
+      <strong>tiem versiju nosaukumos nav.</strong>
+    </p>
+    <p>
+      Rezultāts: katram, kas lapu jau ir apmeklējis, CSS un JS ir iesaldēti gadu uz priekšu
+      ar <code>immutable</code> — kas pārlūkam nozīmē «pat nejautā, vai ir jaunāks».
+      Visi šajā dokumentā aprakstītie labojumi viņus <em>nesasniegs.</em>
+    </p>
+    <p>
+      Ironija: commit <code>3e30bbe</code> — «…and the caching that would have frozen it» —
+      nozīmē, ka šīs pašas lamatas jau vienreiz ir pieķertas un atrisinātas attēliem.
+      CSS un JS palika ārpus tā risinājuma.
+    </p>
+    <p>Labojums tajā pašā konvencijā, kas jau darbojas:</p>
+    <pre><span class="add">style-v2.css</span>, <span class="add">site-v2.js</span>   <span class="c">← versionē nosaukumu, kā attēliem</span>
+
+<span class="c"># vai, ja negribi versionēt katrā labojumā:</span>
+/assets/img/*      Cache-Control: public, max-age=31536000, immutable
+/assets/fonts/*    Cache-Control: public, max-age=31536000, immutable
+/assets/style.css  Cache-Control: public, max-age=3600
+/assets/site.js    Cache-Control: public, max-age=3600</pre>
+    <p><strong>Šis jālabo pirms jebkā cita šajā dokumentā</strong> — citādi pārējie labojumi daļai auditorijas vienkārši nenotiks.</p>
+  </div>
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">4.3</span><span class="t">Konversija beidzas svešā lapā</span><span class="sev s-md">Vidējs</span></div>
+    <p class="where">site/index.html:232–252</p>
+    <p>
+      Formā ir <code>_subject</code> un <code>_gotcha</code> (medus podiņš — labi padarīts),
+      bet nav <code>_next</code>. Tāpēc pēc nosūtīšanas cilvēks aiziet uz
+      <code>formspree.io</code> paldies-lapu: vienīgā darbība, ko visa lapa lūdz, beidzas ar to,
+      ka apmeklētājs <strong>pamet zīmolu</strong>.
+    </p>
+    <p>Labākais variants — nosūtīt fonā un nomainīt formu ar apstiprinājumu turpat:</p>
+    <pre>fetch(form.action, { method:'POST', body:new FormData(form),
+                     headers:{ Accept:'application/json' } })
+  .then(function(r){ if(r.ok) form.replaceWith(thanks); });</pre>
+    <p>Un bez JS strādājošai rezervei — paldies-lapa uz sava domēna:</p>
+    <pre>&lt;input type="hidden" name="_next" value="https://merfonte.com/thank-you"&gt;</pre>
+    <p>Blakus ieguvums: tikai tad, kad apstiprinājums notiek uz tava domēna, konversiju var saskaitīt.</p>
+  </div>
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">4.4</span><span class="t">Nav nekādu mērījumu</span><span class="sev s-md">Vidējs</span></div>
+    <p class="where">visa lapa</p>
+    <p>
+      Nekāda analītika, nekādi notikumi, nekas. Privātuma lapa to pat pasludina kā principu —
+      <em>«no cookies, no analytics, no third parties»</em> — un tas ir cienījami. Bet seka ir tā,
+      ka <strong>nav zināms, vai lapa strādā.</strong> Cik nonāk līdz formai? Cik aiziet hero laikā?
+    </p>
+    <p>
+      Tas ir lēmums, ne kļūda — bet jāizdara ar atvērtām acīm. Vidusceļš, kas nelauž solījumu:
+      bezsīkdatņu, EU mitināta, anonīma statistika (Plausible, Umami) — <em>«no cookies, no third
+      parties for marketing»</em> paliek patiess, un privātuma lapā pietiek ar vienu rindkopu.
+      Alternatīva — apzināti nemērīt neko un pieņemt, ka pirmais laidiens ir akls.
+    </p>
+  </div>
+
+
+  <div class="finding">
+    <div class="finding-head"><span class="n">4.5 / 4.6</span><span class="t">Divas mazās</span><span class="sev s-lo">Zems</span></div>
+    <p>
+      <strong>CSP trūkst.</strong> <code>_headers</code> ir HSTS, <code>X-Frame-Options</code>,
+      <code>nosniff</code>, <code>Referrer-Policy</code>, <code>Permissions-Policy</code>,
+      <code>COOP</code> — pamatīgi. Bet nav <code>Content-Security-Policy</code>, un šai lapai
+      to uzrakstīt ir viegli, jo fonti ir pašmitināti un ārējais galamērķis ir tikai viens:
+    </p>
+    <pre>Content-Security-Policy: default-src 'self'; img-src 'self' data:;
+  style-src 'self'; script-src 'self' 'unsafe-inline';
+  font-src 'self'; form-action 'self' https://formspree.io;
+  frame-ancestors 'none'; base-uri 'none'</pre>
+    <p>
+      <span class="mono">'unsafe-inline'</span> vajadzīgs dēļ inline skripta
+      <code>index.html:37</code>; to var noņemt, pārvietojot to rindu uz <code>site.js</code>.
+    </p>
+    <p style="margin-top:4mm">
+      <strong><code>lastmod</code> melo.</strong> <code>sitemap.xml</code> abām lapām rāda
+      <code>2026-08-02</code>, bet <code>index.html</code> kopš tā datuma ir mainīts vairākas reizes
+      (pēdējais — <code>c794aa2</code>). Google to lieto, lai izlemtu, cik bieži nākt atpakaļ.
+      Vai atjauno pie katras izmaiņas, vai izmet lauku pavisam — nepareizs <code>lastmod</code>
+      ir sliktāks par tā neesamību.
+    </p>
+  </div>
+
+  <div class="chapter-head nobr" style="margin-top:9mm">
+    <p class="num">05 — Kas trūkst</p>
+    <h2>Divas lietas, kas nav kļūdas.</h2>
+    <p class="sub">Tās ir lēmumi, kuri vēl nav pieņemti.</p>
+  </div>
+
+  <h3>Valoda pret tirgu</h3>
+  <p>
+    <code>index.html</code> ir <code>lang="en"</code>, <code>og:locale</code> ir
+    <code>en_GB</code>, viss teksts ir angliski. Bet <code>schema.org</code> saka
+    <code>areaServed: ["NL","BE","DE","EU"]</code>. Nīderlande, Beļģija, Vācija —
+    un neviena no tām nav angliski runājoša valsts.
+  </p>
+  <p>
+    Angļu valoda šajā segmentā Nīderlandē strādā labi, Vācijā ievērojami sliktāk —
+    vācu pircējs premium kosmētikā gaida vācu valodu, un tas ietekmē gan uzticēšanos,
+    gan pilnīgi noteikti SEO: tu neranko vāciski ne par vienu vaicājumu.
+    Šobrīd nav ne <code>hreflang</code>, ne otras valodas versijas.
+  </p>
+  <p>
+    Tas nav jārisina pirms atvēršanas. Bet <code>areaServed</code> ar četrām teritorijām
+    ir apgalvojums, un pagaidām lapa to nesedz. Vai nu sašaurini sarakstu līdz tam,
+    ko tiešām apkalpo pirmajā gadā, vai ieplāno DE versiju kā daļu no atvēršanas.
+  </p>
+
+  <h3>Šī vēl nav veikala lapa</h3>
+  <p>
+    Viss iepriekšējais attiecas uz gaidīšanas sarakstu — vienu lapu ar vienu darbību.
+    Tas ir pareizs mērogs šim brīdim, un tas ir izdarīts labi. Bet «100% perfekti»
+    e-veikalam nozīmē lietas, kuru šeit vēl nav un nevajag būt:
+    produkta lapas ar pilnu INCI un koncentrācijām, groza un maksājuma plūsma,
+    ES atteikuma tiesības un 14 dienu politika, kosmētikas regulas
+    (EK Nr. 1223/2009) prasītā marķējuma informācija, atbildīgā persona ES,
+    PVN pa valstīm, piegādes noteikumi.
+  </p>
+  <p>
+    To pieminu tāpēc, ka tie ir <em>nākamie</em> lielie darbi, un daži no tiem —
+    it īpaši atbildīgā persona un marķējums — ietekmē to, ko drīkst rakstīt produkta
+    lapā. Zīmolam, kas sola «disclosed concentrations», tur ir gan iespēja, gan slazds.
+  </p>
+</section>
+
+<!-- ══════════ 6. SECĪBA ══════════ -->
+<section class="page">
+  <div class="chapter-head">
+    <p class="num">06 — Secība</p>
+    <h2>Šonedēļ, tad pārējais.</h2>
+    <p class="sub">Sakārtots pēc tā, kas bloķē ko citu.</p>
+  </div>
+
+  <table>
+    <tr><th style="width:6%">#</th><th style="width:44%">Darbs</th><th style="width:14%">Apjoms</th><th>Kāpēc šajā vietā</th></tr>
+    <tr><td>1</td><td>Kešošana — versionēt <code>style.css</code> un <code>site.js</code></td><td>10 min</td><td>Bloķē visu pārējo; līdz tam labojumi nesasniedz atgriezušos</td></tr>
+    <tr><td>2</td><td>Inter — <code>font-weight: 100 900</code>, izmest dublikātus</td><td>20 min</td><td>Atdod dizainam svaru, ko tas prasa; −133 KB</td></tr>
+    <tr><td>3</td><td>Izdzēst nodaļu 02, pārnumurēt</td><td>15 min</td><td>Vienīgais zīmola griezums; vislielākā ietekme uz toni</td></tr>
+    <tr><td>4</td><td>Tēzi hero iekšā, virs locījuma</td><td>20 min</td><td>Pirmais ekrāns iegūst saturu</td></tr>
+    <tr><td>5</td><td>«Marine source» <span class="arw">&#8594;</span> «Barrier first»</td><td>10 min</td><td>Saskaņo lapu ar sortimentu</td></tr>
+    <tr><td>6</td><td><code>alt</code> teksti — noņemt saukli</td><td>5 min</td><td>Divas rindas</td></tr>
+    <tr><td>7</td><td>Forma — <code>_next</code> + inline apstiprinājums</td><td>1 h</td><td>Konversija paliek uz domēna; priekšnosacījums mērīšanai</td></tr>
+    <tr><td>8</td><td>Izlemt par analītiku</td><td>lēmums + 1 h</td><td>Bez 7. punkta nav ko mērīt</td></tr>
+    <tr><td>9</td><td>CSP galvene</td><td>30 min</td><td>Pabeidz jau labo drošības konfigurāciju</td></tr>
+    <tr><td>10</td><td><code>lastmod</code> uz relīzes procesu</td><td>15 min</td><td>Vienreizējs, tālāk automātisks</td></tr>
+    <tr><td>11</td><td>Izlemt <code>areaServed</code> pret valodām</td><td>lēmums</td><td>Ietekmē atvēršanas plānu, ne lapu šodien</td></tr>
+  </table>
+
+  <p>Punkti 1–6 ir aptuveni 80 minūtes, un tie ir arī tie, kas maina visvairāk.</p>
+
+  <div class="chapter-head nobr" style="margin-top:10mm">
+    <p class="num">07 — Par «100% perfekti»</p>
+    <h2>Tāda mērķa nav.</h2>
+  </div>
+
+  <p>
+    Tu prasīji, lai tas būtu simtprocentīgi perfekts, un godīgākais, ko varu pateikt, ir
+    ka šis nav mērogs, uz kura tādu punktu ir. Vienmēr būs vēl viens fonta svars,
+    vēl viena galvene, vēl viena rindkopa, ko var savilkt. Perfekcija kā mērķis šeit
+    nozīmētu bezgalīgu pulēšanu lapai, kas vēl neko nepārdod.
+  </p>
+  <p>
+    Bet ir mērķis, kas ir sasniedzams un pārbaudāms, un tas ir šaurāks:
+  </p>
+
+  <p class="pull">
+    Nekas lapā nedrīkst būt pretrunā ar to, ko lapa sola.
+  </p>
+
+  <p>
+    Zīmols sola precizitāti, atklātību un to, ka apgalvojums bez atsauces netiek izteikts.
+    Katrs šī dokumenta atradums ir viena un tā pati kļūda dažādos slāņos: nodaļa, kas
+    aizstāv vārdu, nevis apraksta mehānismu. Solījums par jūru, kuram nav produkta.
+    Sauklis, kas ieņēmis alt teksta vietu. Fonts, kas deklarēts kā tas, kas tas nav.
+    Komentārs kešošanas failā, kas apraksta kārtību, kāda tur nav.
+  </p>
+  <p>
+    Katra no tām atsevišķi ir sīkums. Kopā tās ir vienīgā lieta, kas šim zīmolam
+    tiešām var kaitēt — <strong>plaisa starp to, ko tas saka par sevi, un to, kā tas ir uzbūvēts.</strong>
+    Aizver plaisu, un lapa ir tik laba, cik šajā posmā tai jābūt. Tas nav 100%,
+    bet tas ir vienīgais skaitlis, kas kaut ko nozīmē.
+  </p>
+
+  <div class="foot"><span>Merfonte · Revīzija · 2026-08-08</span><span>06–07 — Secība</span></div>
+</section>
+
+</body>
+</html>
