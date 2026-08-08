@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<title>Merfonte — revīzija vienā lapā</title>
+<style>
+/*FONTS*/
+
+:root{
+  --navy:#152238; --gold:#8a6733; --gold-lo:#b08850;
+  --ink:#1b2536; --dim:#6b7688; --hair:#e2dccf; --tint:#fbf9f5;
+}
+*{box-sizing:border-box;}
+@page{ size:A4; margin:0; }
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+body{
+  margin:0; width:210mm; height:297mm;
+  font-family:'Spectral',Georgia,serif; font-weight:400;
+  font-size:7.5pt; line-height:1.44; color:var(--ink);
+  background:#fff; display:flex; flex-direction:column;
+}
+
+/* ---------- header ---------- */
+.head{
+  background:var(--navy); color:#faf7f1;
+  padding:9mm 13mm 8mm;
+}
+.head .mark{
+  font-family:'Inter',sans-serif; font-size:8pt; font-weight:400;
+  letter-spacing:.4em; text-transform:uppercase; color:var(--gold-lo);
+  margin:0 0 4.5mm;
+}
+.head h1{
+  font-family:'Spectral',serif; font-weight:300; font-size:19pt;
+  line-height:1.12; letter-spacing:-.01em; margin:0 0 3.5mm; max-width:26ch;
+}
+.head .lede{
+  font-size:8.4pt; line-height:1.5; color:#cfc9be; margin:0; max-width:64ch; font-weight:300;
+}
+.head .date{
+  font-family:'Inter',sans-serif; font-size:6.6pt; letter-spacing:.16em;
+  text-transform:uppercase; color:#8d99ab; float:right; margin-top:1mm;
+}
+
+/* ---------- body grid ---------- */
+.wrap{ flex:1; padding:6.5mm 13mm 0; display:flex; flex-direction:column; }
+
+h2{
+  font-family:'Inter',sans-serif; font-weight:400; font-size:6.8pt;
+  letter-spacing:.19em; text-transform:uppercase; color:var(--gold);
+  margin:0 0 2mm; padding-bottom:1.1mm; border-bottom:1px solid var(--navy);
+}
+h3{
+  font-family:'Spectral',serif; font-weight:400; font-size:8.4pt;
+  color:var(--navy); margin:3mm 0 .9mm;
+}
+p{ margin:0 0 1.8mm; }
+strong{ font-weight:400; color:var(--navy);
+  background:linear-gradient(transparent 62%, rgba(176,136,80,.24) 62%); }
+em{ font-style:italic; }
+code{ font-family:'DejaVu Sans Mono',monospace; font-size:6.5pt;
+  background:#f4f1ea; padding:.2mm .7mm; color:#4a3d28; }
+.arw{ font-family:'DejaVu Sans Mono',monospace; }
+
+/* verdict strip */
+.verdict{ display:flex; gap:4mm; margin:0 0 5mm; }
+.v{
+  flex:1; background:var(--tint); border:1px solid var(--hair);
+  border-left:2.5px solid var(--gold-lo); padding:2.6mm 3mm;
+}
+.v .k{
+  font-family:'Inter',sans-serif; font-size:6pt; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--gold); margin:0 0 1.4mm;
+}
+.v p:last-child{ margin-bottom:0; }
+
+.cols{ display:flex; gap:7mm; margin:0 0 5mm; }
+.cols > div{ flex:1; min-width:0; }
+
+table{ width:100%; border-collapse:collapse;
+  font-family:'Inter',sans-serif; font-size:6.6pt; line-height:1.35; }
+th{
+  text-align:left; font-weight:400; font-size:5.9pt; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--gold);
+  border-bottom:1px solid var(--navy); padding:0 2mm 1.1mm 0; vertical-align:bottom;
+}
+td{ padding:1.25mm 2mm 1.25mm 0; border-bottom:1px solid var(--hair); vertical-align:top; }
+td:last-child, th:last-child{ padding-right:0; }
+td.n{ color:var(--gold-lo); }
+
+.sev{ display:inline-block; font-family:'Inter',sans-serif; font-size:5.4pt;
+  letter-spacing:.11em; text-transform:uppercase; padding:.5mm 1.3mm; white-space:nowrap; }
+.s-hi{ background:#f6e4e0; color:#8e2f22; }
+.s-md{ background:#f7ecd9; color:#7a5a24; }
+.s-lo{ background:#eceff3; color:#5d6878; }
+
+ol{ margin:0; padding-left:4.2mm; }
+ol li{ margin:0 0 1.15mm; }
+ol li::marker{ color:var(--gold-lo); font-family:'Inter',sans-serif; font-size:6pt; }
+.now{ font-family:'Inter',sans-serif; font-size:6.2pt; color:var(--dim); white-space:nowrap; }
+
+.pull{
+  font-family:'Spectral',serif; font-weight:300; font-size:10.5pt; line-height:1.28;
+  color:var(--navy); border-left:2px solid var(--gold-lo); padding-left:3.4mm; margin:0;
+}
+
+.foot{
+  margin-top:auto; padding:3mm 13mm 5mm; display:flex; justify-content:space-between;
+  font-family:'Inter',sans-serif; font-size:6pt; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--dim);
+}
+.foot .rule{ position:absolute; }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <p class="date">Revīzija · 2026-08-08</p>
+  <p class="mark">Merfonte</p>
+  <h1>Vārds paliek. Stāsts iet ārā.<br>Un fonts nekad nav strādājis.</h1>
+  <p class="lede">
+    Viss būtiskais vienā lapā: viens zīmola lēmums, četri satura griezumi un seši
+    tehniski atradumi, no kuriem divi šobrīd strādā pretī visam pārējam, ko lapa cenšas pateikt.
+  </p>
+</div>
+
+<div class="wrap">
+
+  <!-- ── verdikts ── -->
+  <div class="verdict">
+    <div class="v">
+      <p class="k">Vārds</p>
+      <p><strong>Pietiekami labs, lai nemainītu; pietiekami tukšs, lai nepaskaidrotu.</strong>
+      Problēma nekad nav bijis glamūrs — problēma ir, ka lapa vārdu <em>aizstāv</em>.
+      Aizstāvēšanās ir vienīgā vieta, kur zīmols izklausās pēc mārketinga.</p>
+    </div>
+    <div class="v">
+      <p class="k">Fonts</p>
+      <p><strong>Pamatteksts nekad nav rādījies tā, kā uzprojektēts.</strong>
+      Inter ir mainīgs fonts, deklarēts kā statisks; <code>font-weight:300</code>
+      neinstancējas, un viss teksts renderējas Regular svarā. Dizains prasa Light.</p>
+    </div>
+    <div class="v">
+      <p class="k">Kešs</p>
+      <p><strong><code>style.css</code> un <code>site.js</code> iesaldēti uz gadu.</strong>
+      Noteikums tos ķer, bet nosaukumos nav versiju. Katrs turpmākais labojums
+      atgriezušos apmeklētājus nesasniegs līdz 2027. gadam.</p>
+    </div>
+  </div>
+
+  <!-- ── divas kolonnas ── -->
+  <div class="cols">
+
+    <!-- kreisā -->
+    <div>
+      <h2>Zīmols — lēmums</h2>
+      <p>Vārds ir kompromiss, un tas ir <em>pareizais</em> kompromiss: pie €60 izdomāts vārds
+      ir vajadzīgs, jo josla «vārds ir fakts» pieder The Ordinary par €8. Bet kompromisu
+      nedrīkst aizstāvēt.</p>
+      <p><strong>Vārds paliek, nodaļa «The name» iet ārā pilnībā.</strong> Ne pārrakstīt uz «avotu» —
+      izdzēst. Vārds, ko skaidro, taisa mārketingu; vārds, ko lieto, ir vārds.</p>
+      <p>Trīs vainas, kas paliek un ar kurām jādzīvo: franciski <code>fonte</code> ir <em>čuguns</em>;
+      angliski gala «e» nokrīt un sanāk «Merfont»; <code>mer-</code> ausī ir <em>mermaid</em> pirms
+      tā ir jūra. Neviena nav iemesls mainīt vārdu — visas ir iemesls neieguldīt budžetu tur,
+      kur vārds jāuzraksta no galvas.</p>
+      <p><strong>Un stāsts nesedz preci.</strong> Vārds sola jūru; starta sortiments ir keramīdi,
+      retinoīds, C vitamīns — nulle jūras sastāvdaļu.</p>
+
+      <h2 style="margin-top:4.5mm">Saturs — četri griezumi</h2>
+      <table>
+        <tr><th style="width:8%">#</th><th style="width:37%">Griezums</th><th>Kāpēc</th></tr>
+        <tr><td class="n">3.1</td><td>Tēzi hero iekšā, virs locījuma</td><td>Pirmais ekrāns ir tikai logo un zelts — nulle faktu. Te dzimst «pārāk glamūrīgi»</td></tr>
+        <tr><td class="n">3.2</td><td>Izdzēst nodaļu 02 «The name»</td><td>Ja vārds aprakstītu mehānismu, nodaļa nebūtu vajadzīga</td></tr>
+        <tr><td class="n">3.3</td><td>«Marine source» <span class="arw">&#8594;</span> «Barrier first»</td><td>Vienīgais no pieciem solījumiem, kas nav par produktu</td></tr>
+        <tr><td class="n">3.4</td><td><code>alt</code> <span class="arw">&#8594;</span> tikai «Merfonte»</td><td>«sea, source, science» ir sauklis ekrānlasītāja vietā</td></tr>
+      </table>
+    </div>
+
+    <!-- labā -->
+    <div>
+      <h2>Tehniskie atradumi</h2>
+      <table>
+        <tr><th style="width:7%">#</th><th style="width:40%">Atradums</th><th style="width:16%"></th><th>Sekas</th></tr>
+        <tr><td class="n">4.1</td><td>Inter deklarēts kā statisks, bet ir mainīgs</td><td><span class="sev s-hi">Augsts</span></td><td>Viss pamatteksts nepareizā svarā; 133 KB lieki</td></tr>
+        <tr><td class="n">4.2</td><td>CSS un JS iesaldēti uz gadu</td><td><span class="sev s-hi">Augsts</span></td><td>Labojumi nesasniedz atgriezušos</td></tr>
+        <tr><td class="n">4.3</td><td>Forma aizved prom no domēna</td><td><span class="sev s-md">Vidējs</span></td><td>Vienīgā konversija beidzas svešā lapā</td></tr>
+        <tr><td class="n">4.4</td><td>Nav nekādu mērījumu</td><td><span class="sev s-md">Vidējs</span></td><td>Nav zināms, vai lapa strādā</td></tr>
+        <tr><td class="n">4.5</td><td>Nav CSP, lai gan pārējās galvenes ir</td><td><span class="sev s-lo">Zems</span></td><td>Nepilnīga citādi pamatīga konfigurācija</td></tr>
+        <tr><td class="n">4.6</td><td><code>sitemap</code> <code>lastmod</code> novecojis</td><td><span class="sev s-lo">Zems</span></td><td>Google domā, saturs nav mainījies</td></tr>
+      </table>
+
+      <h3>Pierādījums 4.1</h3>
+      <p><code>inter-300-latin.woff2</code> un <code>inter-400-latin.woff2</code> ir identiski
+      pa baitam (<code>65850a37…</code>), un abu <code>usWeightClass</code> ir 400 ar
+      <code>variable=True</code>. Spectral turpretī ir divi īsti statiski faili — tur viss kārtībā.
+      Labojums: viens <code>@font-face</code> pāris ar <code>font-weight: 100 900</code>.</p>
+
+      <h3>Pierādījums 4.2</h3>
+      <p><code>/assets/*</code> dod <code>immutable, max-age=31536000</code>, bet
+      <code>style.css</code> un <code>site.js</code> nav versionēti. Tās pašas lamatas jau
+      vienreiz pieķertas attēliem — commit <code>3e30bbe</code>; CSS un JS palika ārpus tā
+      risinājuma. <strong>Jālabo pirms visa pārējā.</strong></p>
+    </div>
+  </div>
+
+  <!-- ── secība ── -->
+  <div class="cols" style="margin-bottom:4mm">
+    <div style="flex:1.35">
+      <h2>Secība — pēc tā, kas bloķē ko citu</h2>
+      <div class="cols" style="gap:6mm;margin:0">
+        <div>
+          <ol>
+            <li>Kešošana — versionēt <code>style.css</code>, <code>site.js</code> <span class="now">· 10 min</span></li>
+            <li>Inter — <code>font-weight: 100 900</code>, izmest dublikātus <span class="now">· 20 min</span></li>
+            <li>Izdzēst nodaļu 02, pārnumurēt <span class="now">· 15 min</span></li>
+            <li>Tēzi hero iekšā <span class="now">· 20 min</span></li>
+            <li>«Marine source» <span class="arw">&#8594;</span> «Barrier first» <span class="now">· 10 min</span></li>
+            <li><code>alt</code> teksti — noņemt saukli <span class="now">· 5 min</span></li>
+          </ol>
+        </div>
+        <div>
+          <ol start="7">
+            <li>Forma — <code>_next</code> + inline apstiprinājums <span class="now">· 1 h</span></li>
+            <li>Izlemt par analītiku <span class="now">· lēmums</span></li>
+            <li>CSP galvene <span class="now">· 30 min</span></li>
+            <li><code>lastmod</code> uz relīzes procesu <span class="now">· 15 min</span></li>
+            <li><code>areaServed</code> pret valodām — <code>lang="en"</code>, bet apkalpo NL/BE/DE <span class="now">· lēmums</span></li>
+          </ol>
+        </div>
+      </div>
+      <p style="margin-top:2.2mm"><strong>Punkti 1–6 ir ~80 minūtes, un tie maina visvairāk.</strong></p>
+    </div>
+
+    <div style="flex:1">
+      <h2>Par «100% perfekti»</h2>
+      <p class="pull">Nekas lapā nedrīkst būt pretrunā ar to, ko lapa sola.</p>
+      <p style="margin-top:2.4mm">Tāda punkta kā simts procenti šeit nav — vienmēr būs vēl viens
+      fonta svars un vēl viena rindkopa, ko savilkt. Bet ir mērķis, kas ir pārbaudāms, un tas ir
+      šaurāks.</p>
+      <p>Katrs atradums šajā lapā ir viena un tā pati kļūda dažādos slāņos: nodaļa, kas aizstāv
+      vārdu, nevis apraksta mehānismu. Solījums par jūru, kuram nav produkta. Sauklis alt teksta
+      vietā. Fonts, kas deklarēts kā tas, kas tas nav. Komentārs kešošanas failā, kas apraksta
+      kārtību, kāda tur nav.</p>
+      <p>Atsevišķi — sīkumi. Kopā tā ir <strong>plaisa starp to, ko zīmols saka par sevi, un to,
+      kā tas ir uzbūvēts</strong> — vienīgā lieta, kas šim zīmolam tiešām var kaitēt.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="foot">
+  <span>Merfonte · Revīzija vienā lapā</span>
+  <span>Pilnā versija: work/review/Merfonte-revizija.pdf</span>
+</div>
+
+</body>
+</html>
